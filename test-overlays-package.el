@@ -46,7 +46,7 @@
 (initialize-hearts)
 
 (list-timers)
-
+; 494 706 1204
 (setq heart (move-down heart))
 (defun set-heart (val)
   (setq hearts (move-down val)))
@@ -57,9 +57,12 @@
 (mapcar #'delete-overlay (overlays-in 0 100000))
 
 
+(defmacro heart-sim (pos)
+  `(make-heart (1+ ,pos)))
+
 (defun initialize-hearts () ;eventually how many hearts
-  (setq hearts (append (make-heart (1+ 358)) (make-heart (1+ 64))))
-  (setq timer-moving (run-at-time 5 1 #'set-heart hearts))) ;; works!
+  (setq hearts (append (heart-sim 358) (heart-sim 63) (heart-sim 494) (heart-sim 706) (heart-sim 1204)))
+  (setq timer-moving (run-at-time 3 1 #'set-heart hearts))) ;; works!
 
 
 
@@ -83,11 +86,11 @@
 ;; test with multiple, then write letter for her
 ;;note moves down off of the len of line below, maybe should move down because of its own line? doesnt matter when it's all filled
 
-(setq hearts (mapcar #'(lambda ( ) (make-heart  )) (list (random 910) (random 910) (random 910) (random 910))));;idk what about this breaks but smthn so just hardcode ig
+(setq hearts (mapcar #'(lambda (x) (make-heart x)) (list (random 910) (random 910) (random 910) (random 910))));;idk what about this breaks but smthn so just hardcode ig
 ;;todos:
 ;; randomly choose columns
-;; run code every time interval
-;; replace   with invis thing
+;; run code every time interval - DONE
+;; replace x  with invis thing - DONE
 ;; write letter
 
 (defmacro default (sym val)
