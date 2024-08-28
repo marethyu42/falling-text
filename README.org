@@ -1,0 +1,2 @@
+* Falling Text
+An in progress emacs package for using overlays to make aesthetic falling text
